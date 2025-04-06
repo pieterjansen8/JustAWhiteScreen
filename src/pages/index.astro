@@ -1,13 +1,30 @@
 ---
 import "../styles/globals.css"
 import Layout from '../layouts/Layout.astro';
-import Page from "./main.jsx";
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
 	<div class="flex flex-col w-screen h-screen justify-center items-center bg-white">
-		<Page  client:load></Page>
+		<button id="btn">request</button>
 	</div>
 </Layout>
+
+<script>
+	let clicked = false;
+	const btn = document.getElementById("btn");
+	btn.addEventListener("click", () => {
+		if(clicked==false){
+			document.body.requestFullscreen();
+			clicked = true;
+			btn.innerHTML = "exit";
+		}
+		else{
+			document.exitFullscreen();
+			clicked = false;
+			btn.innerHTML = "request";
+		}
+		
+	});
+</script>
